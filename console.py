@@ -13,12 +13,15 @@ from models.review import Review
 from models.place import Place
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """New class commands"""
 
     prompt = "(hbnb) "
-    all_classes = ["BaseModel", "User", "City", "State", "Amenity", "Review", "Place"]
-    cmds = ["EOF", "help", "quit", "create", "count", "show", "destroy", "all", "update"]
+    all_classes = ["BaseModel", "User", "City", "State",
+                   "Amenity", "Review", "Place"]
+    cmds = ["EOF", "help", "quit", "create", "count",
+            "show", "destroy", "all", "update"]
 
     def do_EOF(self, line):
         """EOF command to exit"""
@@ -30,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit"""
 
         return True
-    
+
     def do_help(self, line):
         """Help command to show docstring for a command
         """
@@ -56,7 +59,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_count(self, line):
         """Count command"""
-       
         count = 0
         line_list = line.split()
         if line_list[0] in self.all_classes:
@@ -85,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             else:
                 print(objs[key].__str__())
-    
+
     def do_all(self, line):
         """print all string representation"""
         line_list = line.split()
@@ -99,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
             return
-        
+
     def do_update(self, line):
         """Update instance by name and id"""
         line_list = line.split()
@@ -132,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
 
         all_words = line.split('.')
         if "(" in all_words[-1] and ")" in all_words[-1]:
-            methods_and_args= all_words[-1].split("(")
+            methods_and_args = all_words[-1].split("(")
             method = methods_and_args[0]
             args = methods_and_args[1].rstrip(")").split(",")
 
@@ -144,7 +146,6 @@ class HBNBCommand(cmd.Cmd):
             if cls_name not in self.cls_objs:
                 print("** class doesn't exist **")
                 return
-
             function = getattr(self, "do_" + method)
             all_args = " ".join([cls_name] + args)
             function(all_args)
@@ -177,9 +178,9 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
             else:
-                del(objs[key])
+                del objs[key]
                 models.storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-

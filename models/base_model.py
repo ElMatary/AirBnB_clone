@@ -22,11 +22,11 @@ class BaseModel:
                         self.__dict__[k] = datetime.fromisoformat(v)
                     else:
                         self.__dict__[k] = v
-    
+
     def __str__(self):
         """return str"""
         return f"[{self.__class__.__name__}] ({self.id}) <{self.__dict__}>"
-    
+
     def save(self):
         """Update with the current date and time"""
 

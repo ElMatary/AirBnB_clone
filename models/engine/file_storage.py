@@ -10,6 +10,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models.place import Place
 
+
 class FileStorage:
     """serializes and deserializes JSON file to instances"""
 
@@ -18,10 +19,12 @@ class FileStorage:
     new_dict = {"User": User, "BaseModel": BaseModel, "City": City,
                 "State": State, "Amenity": Amenity, "Review": Review,
                 "Place": Place}
+
     def all(self):
         """returns the dict"""
 
         return self.__objects
+
     def new(self, obj):
         '''create new object'''
         if obj:
@@ -30,12 +33,13 @@ class FileStorage:
 
     def save(self):
         """serializes objects"""
-            
+
         with open(self.__file_path, 'w', encoding="UTF-8") as f:
             object_dict = {}
             for key, obj in self.__objects.items():
                 object_dict[key] = obj.to_dict()
             json.dump(object_dict, f)
+
     def reload(self):
         """deserializes the Json file"""
         try:

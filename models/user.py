@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-""" Class Constructor """
+    """ Class Constructor """
     email = ""
     password = ""
     first_name = ""

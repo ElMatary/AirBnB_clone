@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-""" Class Constructor """
+    """ Class Constructor """
     place_id = ""
     user_id = ""
     text = ""
